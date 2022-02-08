@@ -1,20 +1,32 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
-import {movieService} from "../../services/movies.service";
 import MovieCard from "../MovieCard/MovieCard";
+import {loadMovies} from "../../store/movie.slice";
 import "./MoviesList.css";
 
 const MoviesList = () => {
 
-    const [movies, setMovies] = useState([]);
+    const {movies, page, status, error} = useSelector(state => state["movieReducer"]);
+
+    const dispatch = useDispatch();
 
     useEffect(()=>{
-        movieService.getPopular(1).then(value => setMovies(value.results))
-    },[])
+        dispatch(loadMovies(page));
+    }, [])
+
+    const getMore = () => {
+        dispatch(loadMovies(page));
+    }
 
     return (
-        <div className="MoviesList">
-            {movies.map(movie => <MovieCard key={movie.id} movie={movie}/>)}
+        <div>
+            <div className="MoviesList">
+                {movies.map(movie => <MovieCard key={movie.id} movie={movie}/>)}
+                {status === "pending" && <h2>Loading...</h2>}
+                {error && <h2>{error}</h2>}
+            </div>
+            <button onClick={getMore}>Load More</button>
         </div>
     );
 };

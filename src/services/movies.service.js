@@ -3,5 +3,5 @@ import {API_KEY, urls} from "../constants/urls";
 
 
 export const movieService = {
-    getPopular: (page) => axiosService.get(`${urls.movies}/${urls.popular}?api_key=${API_KEY}&page=${page}`).then(value => value.data)
+    getPopular: (page) => axiosService.get(`${urls.movies}/${urls.popular}?api_key=${API_KEY}&page=${page}`).then(value => value.data.results)
 }

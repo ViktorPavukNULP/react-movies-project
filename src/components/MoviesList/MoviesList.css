@@ -4,3 +4,8 @@
     gap: 10px;
     justify-content: center;
 }
+
+button{
+    margin: 10px auto;
+    padding: 10px;
+}
