@@ -5,7 +5,6 @@ export const loadMovies = createAsyncThunk(
     "movieSlice/LoadMovies",
     async (page,{rejectedWithValue}) => {
         try {
-            console.log(page);
             return await movieService.getPopular(page)
         } catch (e) {
             return rejectedWithValue(e.message)
@@ -29,7 +28,6 @@ const movieSlice = createSlice({
             state.status = "pending";
         },
         [loadMovies.fulfilled]: (state, action) => {
-            console.log(action.payload)
             state.status = "fulfilled";
             state.page += 1;
             state.movies = state.movies.concat(action.payload);
