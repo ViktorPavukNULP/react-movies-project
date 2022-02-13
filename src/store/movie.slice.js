@@ -1,11 +1,23 @@
-import {createAsyncThunk ,createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {movieService} from "../services/movies.service";
+import {genreService} from "../services/genre.service";
 
-export const loadMovies = createAsyncThunk(
-    "movieSlice/LoadMovies",
-    async (page,{rejectedWithValue}) => {
+export const getMovies = createAsyncThunk(
+    "movieSlice/GetMovies",
+    async (page, {rejectedWithValue}) => {
         try {
             return await movieService.getPopular(page)
+        } catch (e) {
+            return rejectedWithValue(e.message)
+        }
+    }
+)
+
+export const getGenres = createAsyncThunk(
+    "movieSlice/GetGenres",
+    async (_, {rejectedWithValue}) => {
+        try {
+            return await genreService.getAll()
         } catch (e) {
             return rejectedWithValue(e.message)
         }
@@ -16,28 +28,32 @@ const movieSlice = createSlice({
     name: "movieSlice",
     initialState: {
         movies: [],
+        allGenres: [],
         page: 1,
         status: null,
         error: null,
         currentY: 0
     },
     reducers: {
-        setCurrentY : (state, action) => {
+        setCurrentY: (state, action) => {
             state.currentY = action.payload;
         }
     },
     extraReducers: {
-        [loadMovies.pending] : (state) => {
+        [getMovies.pending]: (state) => {
             state.status = "pending";
         },
-        [loadMovies.fulfilled]: (state, action) => {
+        [getMovies.fulfilled]: (state, action) => {
             state.status = "fulfilled";
             state.page += 1;
             state.movies = state.movies.concat(action.payload);
         },
-        [loadMovies.rejected]: (state, action) => {
+        [getMovies.rejected]: (state, action) => {
             state.status = "rejected";
             state.error = action.payload;
+        },
+        [getGenres.fulfilled]: (state, action) => {
+            state.allGenres = action.payload;
         }
     }
 })

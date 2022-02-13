@@ -2,18 +2,21 @@ import React, {useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import MovieCard from "../MovieCard/MovieCard";
-import {loadMovies} from "../../store/movie.slice";
+import {getGenres, getMovies} from "../../store/movie.slice";
 import "./MoviesList.css";
 
 const MoviesList = () => {
 
-    const {movies, page, status, error, currentY} = useSelector(state => state["movieReducer"]);
+    const {movies, allGenres, page, status, error, currentY} = useSelector(state => state["movieReducer"]);
     const dispatch = useDispatch();
     const MoviesListRef = useRef();
 
     useEffect(() => {
+        if (allGenres.length === 0) {
+            dispatch(getGenres());
+        }
         if (movies.length === 0) {
-            dispatch(loadMovies(page));
+            dispatch(getMovies(page));
         }
         MoviesListRef.current.scrollTop = currentY;
     }, [])
@@ -22,7 +25,7 @@ const MoviesList = () => {
         if (MoviesListRef.current) {
             const {scrollTop, scrollHeight, clientHeight} = MoviesListRef.current;
             if ((Math.round(scrollTop + clientHeight) + 200 >= scrollHeight) && (status === "fulfilled")) {
-                dispatch(loadMovies(page));
+                dispatch(getMovies(page));
             }
         }
     }
