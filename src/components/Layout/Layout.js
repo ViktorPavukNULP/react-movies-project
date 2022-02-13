@@ -7,8 +7,8 @@ const Layout = () => {
     return (
         <>
             <div className="Layout">
-                <NavLink to={"movies"}>Movies</NavLink>
-                <NavLink to={"genres"}>Genres</NavLink>
+                <NavLink to={"movies"}>MOVIES</NavLink>
+                <NavLink to={"genres"}>GENRES</NavLink>
             </div>
             <Outlet/>
         </>

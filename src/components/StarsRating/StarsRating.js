@@ -5,14 +5,14 @@ import "./StarsRating.css"
 
 const StarsRating = ({vote}) => {
     return (
-            <StarRatings
-                rating={vote}
-                starRatedColor="rgb(120, 200, 60)"
-                starDimension="25px"
-                starSpacing="1px"
-                numberOfStars={10}
-                name='rating'
-            />
+        <StarRatings
+            rating={vote}
+            starRatedColor="rgb(25,	135, 84)"
+            starDimension="25px"
+            starSpacing="1px"
+            numberOfStars={10}
+            name='rating'
+        />
     );
 };
 
