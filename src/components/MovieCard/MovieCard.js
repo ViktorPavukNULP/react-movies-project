@@ -2,14 +2,18 @@ import React from "react";
 
 import "./MovieCard.css";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setCurrentY} from "../../store/movie.slice";
 
-const MovieCard = ({movie}) => {
+const MovieCard = ({movie, MoviesListRef}) => {
     const BASE_URL = "http://image.tmdb.org/t/p/";
     const SIZE = "w300";
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const toDetails = ()=>{
+        dispatch(setCurrentY(MoviesListRef.current.scrollTop));
         navigate(movie.id.toString());
     }
     return (

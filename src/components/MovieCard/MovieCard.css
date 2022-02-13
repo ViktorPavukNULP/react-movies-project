@@ -1,7 +1,6 @@
 .MovieCard{
-    width: 400px;
+    width: 300px;
     background: lightblue;
-    padding: 10px;
     box-sizing: border-box;
 }
 

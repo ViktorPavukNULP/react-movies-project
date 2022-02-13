@@ -7,22 +7,20 @@ import "./MoviesList.css";
 
 const MoviesList = () => {
 
-    const {movies, page, status, error} = useSelector(state => state["movieReducer"]);
+    const {movies, page, status, error, currentY} = useSelector(state => state["movieReducer"]);
     const dispatch = useDispatch();
     const MoviesListRef = useRef();
 
     useEffect(() => {
-        dispatch(loadMovies(page));
+        if (!movies){
+            dispatch(loadMovies(page));
+        }
+        MoviesListRef.current.scrollTop = currentY;
     }, [])
-
-    // const getMore = () => {
-    //     dispatch(loadMovies(page));
-    // }
 
     const onScroll = () => {
         if (MoviesListRef.current) {
             const {scrollTop, scrollHeight, clientHeight} = MoviesListRef.current;
-            // console.log(Math.round(scrollTop + clientHeight), scrollHeight, status);
             if ((Math.round(scrollTop + clientHeight) + 200 >= scrollHeight) && (status === "fulfilled")) {
                 console.log("reached bottom");
                 dispatch(loadMovies(page));
@@ -31,14 +29,13 @@ const MoviesList = () => {
     }
 
     return (
-        <div>
             <div className="MoviesList" onScroll={onScroll} ref={MoviesListRef}>
-                {movies.map(movie => <MovieCard key={movie.id} movie={movie}/>)}
-                {status === "pending" && <h2>Loading...</h2>}
-                {error && <h2>{error}</h2>}
+                {movies.map(movie => <MovieCard key={movie.id} movie={movie} MoviesListRef={MoviesListRef}/>)}
+                <div className="MoviesListResponse">
+                    {status === "pending" && <h2>Loading...</h2>}
+                    {error && <h2>{error}</h2>}
+                </div>
             </div>
-            {/*<button onClick={getMore}>Load More</button>*/}
-        </div>
     );
 };
 

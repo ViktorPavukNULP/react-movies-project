@@ -18,10 +18,13 @@ const movieSlice = createSlice({
         movies: [],
         page: 1,
         status: null,
-        error: null
+        error: null,
+        currentY: 0
     },
     reducers: {
-
+        setCurrentY : (state, action) => {
+            state.currentY = action.payload;
+        }
     },
     extraReducers: {
         [loadMovies.pending] : (state) => {
@@ -41,4 +44,4 @@ const movieSlice = createSlice({
 
 const movieReducer = movieSlice.reducer;
 export default movieReducer;
-export const {addMovies} = movieSlice.actions;
+export const {setCurrentY} = movieSlice.actions;
