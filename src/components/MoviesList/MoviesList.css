@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch;
     height: calc(100vh - 60px);
     overflow: auto;
 }

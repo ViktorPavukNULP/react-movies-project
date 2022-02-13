@@ -6,7 +6,6 @@ import {getGenres, getMovies} from "../../store/movie.slice";
 import "./MoviesList.css";
 
 const MoviesList = () => {
-
     const {movies, allGenres, page, status, error, currentY} = useSelector(state => state["movieReducer"]);
     const dispatch = useDispatch();
     const MoviesListRef = useRef();

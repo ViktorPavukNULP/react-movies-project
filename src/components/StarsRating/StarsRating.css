@@ -1,3 +1,6 @@
 .star-ratings{
+    width: 100%;
     margin: 5px auto;
+    padding: 5px;
+    border-top: lightgray 1px solid;
 }

@@ -9,7 +9,7 @@ const StarsRating = ({vote}) => {
             rating={vote}
             starRatedColor="rgb(25,	135, 84)"
             starDimension="25px"
-            starSpacing="1px"
+            starSpacing="2px"
             numberOfStars={10}
             name='rating'
         />
