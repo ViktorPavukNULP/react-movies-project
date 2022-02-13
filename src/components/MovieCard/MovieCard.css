@@ -1,9 +1,25 @@
 .MovieCard{
     width: 300px;
-    background: lightblue;
-    box-sizing: border-box;
+    background: white;
+    border: 1px solid darkgrey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .MovieCard img,h2{
     cursor: pointer;
 }
+
+.MovieCard h2{
+    margin: 5px;
+}
+
+.MovieCard .MovieCardInfo{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: lightgray 1px solid;
+}
+

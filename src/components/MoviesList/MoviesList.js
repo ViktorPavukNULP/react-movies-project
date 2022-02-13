@@ -12,7 +12,7 @@ const MoviesList = () => {
     const MoviesListRef = useRef();
 
     useEffect(() => {
-        if (!movies){
+        if (movies.length === 0) {
             dispatch(loadMovies(page));
         }
         MoviesListRef.current.scrollTop = currentY;
@@ -22,20 +22,19 @@ const MoviesList = () => {
         if (MoviesListRef.current) {
             const {scrollTop, scrollHeight, clientHeight} = MoviesListRef.current;
             if ((Math.round(scrollTop + clientHeight) + 200 >= scrollHeight) && (status === "fulfilled")) {
-                console.log("reached bottom");
                 dispatch(loadMovies(page));
             }
         }
     }
 
     return (
-            <div className="MoviesList" onScroll={onScroll} ref={MoviesListRef}>
-                {movies.map(movie => <MovieCard key={movie.id} movie={movie} MoviesListRef={MoviesListRef}/>)}
-                <div className="MoviesListResponse">
-                    {status === "pending" && <h2>Loading...</h2>}
-                    {error && <h2>{error}</h2>}
-                </div>
+        <div className="MoviesList" onScroll={onScroll} ref={MoviesListRef}>
+            {movies.map(movie => <MovieCard key={movie.id} movie={movie} MoviesListRef={MoviesListRef}/>)}
+            <div className="MoviesListResponse">
+                {status === "pending" && <h2>Loading...</h2>}
+                {error && <h2>{error}</h2>}
             </div>
+        </div>
     );
 };
 

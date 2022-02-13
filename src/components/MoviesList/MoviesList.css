@@ -3,10 +3,13 @@
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+    align-items: flex-start;
     height: calc(100vh - 60px);
     overflow: auto;
 }
 
-.MoviesList MovieListResponse{
-    width: 100%;
+.MoviesList .MoviesListResponse{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }

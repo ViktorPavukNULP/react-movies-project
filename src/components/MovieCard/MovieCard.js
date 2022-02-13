@@ -1,9 +1,11 @@
 import React from "react";
-
-import "./MovieCard.css";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
+
 import {setCurrentY} from "../../store/movie.slice";
+import StarsRating from "../StarsRating/StarsRating";
+
+import "./MovieCard.css";
 
 const MovieCard = ({movie, MoviesListRef}) => {
     const BASE_URL = "http://image.tmdb.org/t/p/";
@@ -18,9 +20,12 @@ const MovieCard = ({movie, MoviesListRef}) => {
     }
     return (
         <div className="MovieCard">
-            <img src={`${BASE_URL}${SIZE}${movie.poster_path}`} onClick={toDetails} alt={movie.title}/>
-            <h2 onClick={toDetails}>{movie.title}</h2>
-            <h3>Vote: {movie.vote_average}</h3>
+            <div><img src={`${BASE_URL}${SIZE}${movie.poster_path}`} onClick={toDetails} alt={movie.title}/></div>
+            <div className="MovieCardInfo">
+                <h2 onClick={toDetails}>{movie.title}</h2>
+                <p>{movie.overview}</p>
+            </div>
+            <StarsRating vote={movie.vote_average}/>
         </div>
     );
 };
