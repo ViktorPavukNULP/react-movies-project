@@ -3,5 +3,8 @@
     background: lightblue;
     padding: 10px;
     box-sizing: border-box;
+}
+
+.MovieCard img,h2{
     cursor: pointer;
 }

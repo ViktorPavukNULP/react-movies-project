@@ -13,9 +13,9 @@ const MovieCard = ({movie}) => {
         navigate(movie.id.toString());
     }
     return (
-        <div className="MovieCard" onClick={toDetails}>
-            <img src={`${BASE_URL}${SIZE}${movie.poster_path}`} alt=""/>
-            <h2>{movie.title}</h2>
+        <div className="MovieCard">
+            <img src={`${BASE_URL}${SIZE}${movie.poster_path}`} onClick={toDetails} alt={movie.title}/>
+            <h2 onClick={toDetails}>{movie.title}</h2>
             <h3>Vote: {movie.vote_average}</h3>
         </div>
     );

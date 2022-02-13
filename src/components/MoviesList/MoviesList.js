@@ -15,14 +15,15 @@ const MoviesList = () => {
         dispatch(loadMovies(page));
     }, [])
 
-    const getMore = () => {
-        dispatch(loadMovies(page));
-    }
+    // const getMore = () => {
+    //     dispatch(loadMovies(page));
+    // }
 
     const onScroll = () => {
         if (MoviesListRef.current) {
             const {scrollTop, scrollHeight, clientHeight} = MoviesListRef.current;
-            if ((Math.floor(scrollTop + clientHeight) + 1 === scrollHeight) && (status === "fulfilled")) {
+            // console.log(Math.round(scrollTop + clientHeight), scrollHeight, status);
+            if ((Math.round(scrollTop + clientHeight) + 200 >= scrollHeight) && (status === "fulfilled")) {
                 console.log("reached bottom");
                 dispatch(loadMovies(page));
             }
