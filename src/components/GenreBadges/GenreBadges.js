@@ -6,10 +6,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./GenreBadges.css";
 
 const GenreBadges = ({genreIds}) => {
-    const {allGenres} = useSelector(state => state["movieReducer"])
+    const {genres} = useSelector(state => state["genreReducer"]);
     return (
         <div className="GenreBadges">
-            {genreIds.map(genreId => <Badge color="success" key={genreId}>{allGenres.find(genre => genre.id === genreId).name}</Badge>)}
+            {genreIds.map(genreId => <Badge color="success" key={genreId}>{genres.find(genre => genre.id === genreId).name}</Badge>)}
         </div>
     );
 };

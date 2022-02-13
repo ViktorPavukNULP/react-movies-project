@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {movieService} from "../services/movies.service";
-import {genreService} from "../services/genre.service";
 
 export const getMovies = createAsyncThunk(
     "movieSlice/GetMovies",
@@ -13,22 +12,10 @@ export const getMovies = createAsyncThunk(
     }
 )
 
-export const getGenres = createAsyncThunk(
-    "movieSlice/GetGenres",
-    async (_, {rejectedWithValue}) => {
-        try {
-            return await genreService.getAll()
-        } catch (e) {
-            return rejectedWithValue(e.message)
-        }
-    }
-)
-
 const movieSlice = createSlice({
     name: "movieSlice",
     initialState: {
         movies: [],
-        allGenres: [],
         page: 1,
         status: null,
         error: null,
@@ -51,9 +38,6 @@ const movieSlice = createSlice({
         [getMovies.rejected]: (state, action) => {
             state.status = "rejected";
             state.error = action.payload;
-        },
-        [getGenres.fulfilled]: (state, action) => {
-            state.allGenres = action.payload;
         }
     }
 })

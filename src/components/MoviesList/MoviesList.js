@@ -2,16 +2,18 @@ import React, {useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import MovieCard from "../MovieCard/MovieCard";
-import {getGenres, getMovies} from "../../store/movie.slice";
+import {getMovies} from "../../store/movie.slice";
+import {getGenres} from "../../store/genre.slice";
 import "./MoviesList.css";
 
 const MoviesList = () => {
-    const {movies, allGenres, page, status, error, currentY} = useSelector(state => state["movieReducer"]);
+    const {movies, page, status, error, currentY} = useSelector(state => state["movieReducer"]);
+    const {genres} = useSelector(state => state["genreReducer"]);
     const dispatch = useDispatch();
     const MoviesListRef = useRef();
 
     useEffect(() => {
-        if (allGenres.length === 0) {
+        if (genres.length === 0) {
             dispatch(getGenres());
         }
         if (movies.length === 0) {
