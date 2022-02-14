@@ -19,7 +19,8 @@ const movieSlice = createSlice({
         page: 1,
         status: null,
         error: null,
-        currentY: 0
+        currentY: 0,
+        movieDetails: null
     },
     reducers: {
         setCurrentY: (state, action) => {

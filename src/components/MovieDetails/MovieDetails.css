@@ -1,0 +1,7 @@
+.MovieDetails{
+    display: flex;
+    width: 1000px;
+    margin: 0 auto;
+    gap: 20px;
+    height: calc(100vh - 60px);
+}

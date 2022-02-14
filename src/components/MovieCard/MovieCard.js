@@ -22,7 +22,7 @@ const MovieCard = ({movie, MoviesListRef}) => {
     return (
         <div className="MovieCard">
             <div>
-                <img src={`${BASE_URL}${SIZE}${movie.poster_path}`} onClick={toDetails} alt={movie.title}/>
+                <img src={`${BASE_URL}${SIZE}${movie.backdrop_path}`} onClick={toDetails} alt={movie.title}/>
                 <div className="MovieCardInfo">
                     <h2 onClick={toDetails}>{movie.title}</h2>
                     <GenreBadges genreIds={movie.genre_ids}/>
