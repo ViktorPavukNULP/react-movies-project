@@ -6,19 +6,19 @@ import StarsRating from "../StarsRating/StarsRating";
 import "./MovieDetails.css";
 
 const MovieDetails = ({movie}) => {
-
+    const {poster_path,title,genres,vote_average,budget, production_companies, overview} = movie;
     return (
         <div className="MovieDetails">
-            <PosterImage poster_path={movie.poster_path}/>
-            <div>
-                <h2>{movie.title}</h2>
-                {movie.genres.map(genre => <GenreBadge key={genre.id} genre={genre.name}/>)}
+            <PosterImage poster_path={poster_path}/>
+            <div className="MovieDetailsInfo">
+                <h2>{title}</h2>
+                {genres.map(genre => <GenreBadge key={genre.id} genre={genre.name}/>)}
                 {movie.production_countries.map(country => <h6>{country.name}</h6>)}
-                <StarsRating vote={movie.vote_average}/>
-                <h5>Rating: {movie.vote_average}</h5>
-                <h5>Budget: {movie.budget}$</h5>
-                {movie.production_companies.map(company => <li key={company.id}>{company.name}</li>)}
-                <p>{movie.overview}</p>
+                <StarsRating vote={vote_average} emptyColor="black"/>
+                <h5>Rating: {vote_average}</h5>
+                {budget > 0 && <h5>Budget: {budget}$</h5>}
+                {production_companies.map(company => <li key={company.id}>{company.name}</li>)}
+                <p>{overview}</p>
             </div>
         </div>
     );

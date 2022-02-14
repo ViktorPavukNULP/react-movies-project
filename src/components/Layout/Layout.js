@@ -1,15 +1,13 @@
 import React from "react";
-import {NavLink, Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 
+import Header from "../Header/Header";
 import "./Layout.css";
 
 const Layout = () => {
     return (
         <>
-            <div className="Layout">
-                <NavLink to={"movies"}>MOVIES</NavLink>
-                <NavLink to={"genres"}>GENRES</NavLink>
-            </div>
+            <Header/>
             <Outlet/>
         </>
     );

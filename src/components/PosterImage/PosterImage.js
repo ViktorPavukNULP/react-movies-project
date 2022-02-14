@@ -1,11 +1,12 @@
 import React from "react";
 
+import {ImageBaseURL} from "../../constants/urls";
+
 const PosterImage = ({poster_path}) => {
-    const BASE_URL = "http://image.tmdb.org/t/p/";
     const SIZE = "w500";
 
     return (
-        <img src={`${BASE_URL}${SIZE}${poster_path}`} alt="movie image"/>
+        <img src={`${ImageBaseURL}${SIZE}${poster_path}`} alt="movie poster"/>
     );
 };
 

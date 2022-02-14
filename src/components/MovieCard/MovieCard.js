@@ -4,14 +4,11 @@ import {useDispatch} from "react-redux";
 
 import {setCurrentY} from "../../store/movie.slice";
 import StarsRating from "../StarsRating/StarsRating";
-
-import "./MovieCard.css";
 import GenreBadges from "../GenreBadges/GenreBadges";
+import MovieCardImage from "../MovieCardImage/MovieCardImage";
+import "./MovieCard.css";
 
 const MovieCard = ({movie, MoviesListRef}) => {
-    const BASE_URL = "http://image.tmdb.org/t/p/";
-    const SIZE = "w300";
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -22,14 +19,14 @@ const MovieCard = ({movie, MoviesListRef}) => {
     return (
         <div className="MovieCard">
             <div>
-                <img src={`${BASE_URL}${SIZE}${movie.backdrop_path}`} onClick={toDetails} alt={movie.title}/>
+                <MovieCardImage backdrop_path={movie.backdrop_path} toDetails={toDetails}/>
                 <div className="MovieCardInfo">
                     <h2 onClick={toDetails}>{movie.title}</h2>
                     <GenreBadges genreIds={movie.genre_ids}/>
                     <p>{movie.overview}</p>
                 </div>
             </div>
-            <StarsRating vote={movie.vote_average}/>
+            <StarsRating vote={movie.vote_average} emptyColor="grey"/>
         </div>
     );
 };

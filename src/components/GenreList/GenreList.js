@@ -1,8 +1,10 @@
 import React, {useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {getGenres} from "../../store/genre.slice";
+import {useDispatch, useSelector} from "react-redux";
 
-const {useSelector} = require("react-redux");
+import {getGenres} from "../../store/genre.slice";
+import "./GenreList.css";
+
+
 
 const GenreList = () => {
     const {genres} = useSelector(state => state['genreReducer'])

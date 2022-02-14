@@ -15,11 +15,11 @@ const MovieDetailsPage = () => {
     }, [])
 
     return (
-        <div>
+        <>
             {status === "pending" && <h2>Loading...</h2>}
             {status === "rejected" && <h2>{error}</h2>}
             {status === "fulfilled" && <MovieDetails movie={movieDetails}/>}
-        </div>
+        </>
     );
 };
 
